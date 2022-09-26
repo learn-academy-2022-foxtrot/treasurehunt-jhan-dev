@@ -15,10 +15,24 @@ const App = () => {
     "?"
   ])
 
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random() * board.length))
+
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random() * board.length))
+
   const handleGamePlay = (clickedSquare) => {
+    //  make a copy of the board in state so we can modify it in this method
     let updateBoard = [...board]
-    updateBoard[clickedSquare] = '🌴'
-    setBoard(updateBoard)
+    if (clickedSquare === treasureLocation) {
+      updateBoard[clickedSquare] = '🍍'
+      setBoard(updateBoard)
+    }
+    else if (clickedSquare === bombLocation) {
+      updateBoard[clickedSquare] = '🐍'
+      setBoard(updateBoard)    }
+    else {
+      updateBoard[clickedSquare] = '🌴'
+      setBoard(updateBoard)
+    }
   }
 
   return (
